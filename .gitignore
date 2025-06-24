@@ -5,3 +5,5 @@ data/logs/*
 venv/
 simple-fan-controller/
 .idea/
+system-monitor-venv/
+**/__pycache__/

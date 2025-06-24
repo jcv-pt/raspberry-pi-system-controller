@@ -75,17 +75,17 @@ class Engine:
         # CPU : Acquire cpu data
         cpuTemp = self.__cpu.getTemperature()
         cpuPercent =  self.__cpu.getUsageAsPercentage()
-        isCpuFull = self.__cpu.isFull()
+        isCpuFull = self.__cpu.isFull() in (True, None)
 
         # RAM : Acquire ram data
         ramPercent = self.__memory.getUsageAsPercentage()
-        isRamFull = self.__memory.isFull()
+        isRamFull = self.__memory.isFull() in (True, None)
 
         # REACH : Check for network reachable hosts
-        isReachable = self.__reachability.check()
+        isReachable = self.__reachability.check() in (False, None)
 
         # DISK : Check for free space
-        isDiskFull = self.__disks.isFull()
+        isDiskFull = self.__disks.isFull() in (True, None)
 
         # FAN : Adjust fan rotation based on CPU temp. Add a 30 sec between updates
         currentEpoch = int(time())
