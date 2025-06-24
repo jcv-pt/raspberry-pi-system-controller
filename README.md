@@ -4,7 +4,7 @@
 
 Its main purpose is to provide visual indicators, via external LED's, that indicate  system status. This is specially valuable for Raspberry Pi enclosures such as the  UM-SBC-209 from Racknex ([here](https://racknex.com/raspberry-pi-rackmount-kit-4x-slot-19-inch-um-sbc-209/)):
 
-![](docs\images\racknex.jpg)
+![](docs/images/racknex.jpg)
 
 The software runs as a background process, consistently monitoring system resources and displaying LED status accordingly:
 
