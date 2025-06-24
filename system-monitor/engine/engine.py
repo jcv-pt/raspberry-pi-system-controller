@@ -82,7 +82,7 @@ class Engine:
         isRamFull = self.__memory.isFull() in (True, None)
 
         # REACH : Check for network reachable hosts
-        isReachable = self.__reachability.check() in (False, None)
+        isReachable = self.__reachability.check() is True
 
         # DISK : Check for free space
         isDiskFull = self.__disks.isFull() in (True, None)
