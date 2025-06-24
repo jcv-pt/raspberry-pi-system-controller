@@ -1,0 +1,7 @@
+data/config/*
+!data/config/sample.default.ini
+data/logs/*
+!data/logs/.empty
+venv/
+simple-fan-controller/
+.idea/
