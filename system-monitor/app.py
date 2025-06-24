@@ -43,7 +43,7 @@ class App:
         # Initialize runner handler depending on console request
         if app['report'] is True:
             runner = Runner(Report, config, logger)
-        elif app['test'] is not '':
+        elif app['test'] != '':
             runner = Runner(Test, config, logger, app)
         else:
             runner = Runner(Engine, config, logger)
