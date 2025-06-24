@@ -190,7 +190,7 @@ The following diagram illustrates GPIO connection on the Raspberry PI per device
        
        [Service]
        WorkingDirectory=/usr/local/bin/raspberry-system-monitor
-       ExecStart=/usr/local/bin/raspberry-system-monitor/system-monitor-venv/bin/python /usr/local/bin/raspberry-sytem-monitor/system-monitor --verbose=0 --debug=0
+       ExecStart=/usr/local/bin/raspberry-pi-system-monitor/system-monitor-venv/bin/python /usr/local/bin/raspberry-pi-system-monitor/system-monitor --verbose=0 --debug=0
        Restart=always
        
        [Install]

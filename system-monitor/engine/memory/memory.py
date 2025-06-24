@@ -16,7 +16,8 @@ class Memory:
 
     def getUsageAsPercentage(self):
         try:
-            return int((psutil.virtual_memory().available * 100) / psutil.virtual_memory().total)
+            mem = psutil.virtual_memory()
+            return int(mem.percent)
         except:  # handle other exceptions such as attribute errors
             self.__logger.error('Memory',message='Cannot read CPU usage, unknown error: {0}'.format(sys.exc_info()[0]))
 

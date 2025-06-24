@@ -10,6 +10,7 @@ class Led:
     __logger = None
 
     def __init__(self, config: Config, logger: Logger, devicePin: int):
+        self.__thread = None
         self.__config = config
         self.__logger = logger
 
@@ -20,17 +21,17 @@ class Led:
         GPIO.setup(self.__devicePin, GPIO.OUT, initial=GPIO.LOW)
 
     def on(self):
-        if self.__isThreadRunning == False:
+        if self.__isThreadRunning:
             self.__reset()
         GPIO.output(self.__devicePin, GPIO.HIGH)  # Led will be switched on
 
     def off(self):
-        if self.__isThreadRunning == False:
+        if self.__isThreadRunning:
             self.__reset()
-        GPIO.output(self.__devicePin, GPIO.LOW)  # Led will be switched on
+        GPIO.output(self.__devicePin, GPIO.LOW)  # Led will be switched off
 
     def flash(self):
-        if self.__isThreadRunning == False:
+        if not self.__isThreadRunning:
             self.__thread = threading.Thread(target=self.__run)
             self.__thread.start()
 
