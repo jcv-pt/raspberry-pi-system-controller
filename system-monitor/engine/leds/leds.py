@@ -1,4 +1,4 @@
-import RPi.GPIO as GPIO
+from gpiozero import LED
 import time
 import threading
 
@@ -13,22 +13,21 @@ class Led:
         self.__thread = None
         self.__config = config
         self.__logger = logger
-
         self.__devicePin = devicePin
         self.__isThreadRunning = False
 
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(self.__devicePin, GPIO.OUT, initial=GPIO.LOW)
+        # Use gpiozero LED abstraction
+        self.__led = LED(self.__devicePin)
 
     def on(self):
         if self.__isThreadRunning:
             self.__reset()
-        GPIO.output(self.__devicePin, GPIO.HIGH)  # Led will be switched on
+        self.__led.on()
 
     def off(self):
         if self.__isThreadRunning:
             self.__reset()
-        GPIO.output(self.__devicePin, GPIO.LOW)  # Led will be switched off
+        self.__led.off()
 
     def flash(self):
         if not self.__isThreadRunning:
@@ -41,18 +40,18 @@ class Led:
     def shutdown(self):
         self.stop()
         self.off()
-        GPIO.cleanup(self.__devicePin)
+        self.__led.close()  # Free resources
 
     def __run(self):
         self.__isThreadRunning = True
         try:
             while self.__isThreadRunning:
-                GPIO.output(self.__devicePin, GPIO.HIGH)  # Led will be switched on
-                time.sleep(1)  # Waitmode for y seconds
-                GPIO.output(self.__devicePin, GPIO.LOW)  # Led will be switched off
-                time.sleep(1)  # Waitmode for x seconds
+                self.__led.on()
+                time.sleep(1)
+                self.__led.off()
+                time.sleep(1)
         except Exception as e:
-            self.__logger.error('Leds',message='Error while setting GPIO pins: {0}'.format(repr(e)))
+            self.__logger.error('Leds', message=f'Error while flashing LED: {repr(e)}')
 
     def __reset(self):
         self.stop()

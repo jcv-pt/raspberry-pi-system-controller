@@ -54,7 +54,7 @@ The following diagram illustrates GPIO connection on the Raspberry PI per device
   
     ```
     git clone https://github.com/jcv-pt/raspberry-pi-system-monitor.git
-    cd raspberry-pi-fan-controller
+    cd raspberry-pi-system-monitor
     ```
   
   - Create a new venv:
@@ -137,7 +137,7 @@ The following diagram illustrates GPIO connection on the Raspberry PI per device
     - `[PWM][Channel]`
       
       - <u>Desc</u>: *PWM Channel for the fan rotation (check HardwarePWM lib);*
-      - <u>Default</u>: `0`
+      - <u>Default</u>: `1`
       
     - `[PWM][ChipNo]`
       
@@ -181,7 +181,7 @@ The following diagram illustrates GPIO connection on the Raspberry PI per device
 
   - In order to install "System Monitor" as a debian service, please follow steps bellow:
   
-    1. Create a service file, e.g., `/etc/systemd/system/raspberry-system-monitor.service`:
+    1. Create a service file, e.g., ``:
   
        ```
        [Unit]
@@ -189,7 +189,7 @@ The following diagram illustrates GPIO connection on the Raspberry PI per device
        After=syslog.target network.target
        
        [Service]
-       WorkingDirectory=/usr/local/bin/raspberry-system-monitor
+       WorkingDirectory=/usr/local/bin/raspberry-pi-system-monitor
        ExecStart=/usr/local/bin/raspberry-pi-system-monitor/system-monitor-venv/bin/python /usr/local/bin/raspberry-pi-system-monitor/system-monitor --verbose=0 --debug=0
        Restart=always
        

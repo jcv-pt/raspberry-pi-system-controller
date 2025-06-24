@@ -1,6 +1,7 @@
 ###### Requirements without Version Specifiers ######
 configparser
 rpi-hardware-pwm
-RPi.GPIO
+lgpio
+gpiozero>=1.6.2
 psutil
 ###### Requirements with Version Specifiers ######
